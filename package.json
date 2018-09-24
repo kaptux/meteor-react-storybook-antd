@@ -2,7 +2,7 @@
   "name": "antd-sample",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor --settings settings-dev.json"
   },
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.55",

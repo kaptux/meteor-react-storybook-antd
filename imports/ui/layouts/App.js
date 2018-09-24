@@ -3,10 +3,11 @@ import React from 'react';
 import { Layout, Breadcrumb} from 'antd';
 import { Switch, Route } from 'react-router-dom';
 import Sidebar from '../components/Sidebar/Sidebar'
+import Footer from '../components/Footer/Footer'
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 class App extends React.Component {
   constructor(props) {
@@ -41,9 +42,7 @@ class App extends React.Component {
               </Switch>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer>
+          <Footer />
         </Layout>
       </Layout>
     );

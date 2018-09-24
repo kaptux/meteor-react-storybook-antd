@@ -1,0 +1,16 @@
+{
+  "name": "antd-sample",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.0.0-beta.55",
+    "antd": "^3.9.2",
+    "indexof": "0.0.1",
+    "meteor-node-stubs": "^0.3.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1"
+  }
+}

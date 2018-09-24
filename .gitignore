@@ -1,0 +1,5 @@
+node_modules/
+settings-dev.json
+settings-staging.json
+settings-production.json
+.vscode

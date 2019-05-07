@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "antd": "^3.9.2",
+    "bcrypt": "^3.0.6",
     "classnames": "^2.2.6",
     "indexof": "0.0.1",
     "lodash.debounce": "^4.0.8",
@@ -17,7 +18,8 @@
     "react-container-query": "^0.11.0",
     "react-dom": "^16.5.2",
     "react-media": "^1.9.2",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "simpl-schema": "^1.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

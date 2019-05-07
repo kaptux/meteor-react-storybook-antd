@@ -1,5 +1,8 @@
 import { Meteor } from 'meteor/meteor';
+import { Migrations } from 'meteor/percolate:migrations';
+
+import '../imports/startup/server';
 
 Meteor.startup(() => {
-  // code to run on server at startup
+  Migrations.migrateTo('latest');
 });

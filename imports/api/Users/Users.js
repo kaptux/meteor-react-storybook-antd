@@ -33,6 +33,7 @@ Users.schema = new SimpleSchema({
   'menu.$.title': { type: String },
   'menu.$.icon': { type: String },
   uiSettings: { type: Object, blackbox: true },
+  services: { type: Object, blackbox: true },
 });
 
 Users.publicFields = {

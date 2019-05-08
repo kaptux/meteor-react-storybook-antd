@@ -38,8 +38,6 @@ class HeaderView extends Component {
     return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
   };
 
-  handleMenuClick = ({ key }) => {};
-
   handScroll = () => {
     const { autoHideHeader } = this.props;
     const { visible } = this.state;
@@ -72,6 +70,7 @@ class HeaderView extends Component {
 
   render() {
     const { isMobile, handleMenuCollapse, ...setting } = this.props;
+
     const { navTheme, layout, fixedHeader } = setting;
     const { visible } = this.state;
     const isTop = layout === 'topmenu';
@@ -86,15 +85,10 @@ class HeaderView extends Component {
             theme={navTheme}
             mode="horizontal"
             onCollapse={handleMenuCollapse}
-            onMenuClick={this.handleMenuClick}
             {...this.props}
           />
         ) : (
-          <GlobalHeader
-            onCollapse={handleMenuCollapse}
-            onMenuClick={this.handleMenuClick}
-            {...this.props}
-          />
+          <GlobalHeader onCollapse={handleMenuCollapse} {...this.props} />
         )}
       </Header>
     ) : null;

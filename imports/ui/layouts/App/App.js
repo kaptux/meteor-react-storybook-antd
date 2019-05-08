@@ -50,7 +50,6 @@ class App extends React.Component {
     isLoading: PropTypes.bool.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     context: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
     globalSettings: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -69,7 +68,9 @@ class App extends React.Component {
   handleMenuCollapse = collapsed => {
     const {
       dispatch,
-      user: { uiSettings },
+      context: {
+        user: { uiSettings },
+      },
     } = this.props;
 
     const newSettings = { ...uiSettings, collapsed };
@@ -77,19 +78,19 @@ class App extends React.Component {
     dispatch('users.updateUISettings', newSettings);
   };
 
+  handleUserMenuClick = ({ key }) => {
+    const { dispatch } = this.props;
+    dispatch(key);
+  };
+
   getLayout() {
-    const {
-      user: { uiSettings },
-      globalSettings,
-      location,
-    } = this.props;
+    const { context, globalSettings, location, isMobile } = this.props;
 
     const {
-      navTheme,
-      layout: PropsLayout,
-      isMobile,
-      fixedHeader,
-    } = globalSettings;
+      user: { uiSettings },
+    } = context;
+
+    const { navTheme, layout: PropsLayout, fixedHeader } = globalSettings;
 
     const { collapsed } = uiSettings;
 
@@ -123,6 +124,8 @@ class App extends React.Component {
             isMobile={isMobile}
             theme={navTheme}
             collapsed={collapsed}
+            context={context}
+            onMenuClick={this.handleUserMenuClick}
             {...globalSettings}
           />
           <Content className={styles.content} style={contentStyle}>

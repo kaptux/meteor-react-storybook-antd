@@ -26,7 +26,7 @@ export default withTracker(() => {
 
     if (allReady) {
       context.userId = userId;
-      user = UsersCollection.findOne(userId);
+      context.user = UsersCollection.findOne(userId);
       globalSettings = { ...defaultSettings, ...user.uiSettings };
     }
   }
@@ -34,7 +34,6 @@ export default withTracker(() => {
   return {
     isLoading: !allReady,
     isAuthenticated,
-    user,
     context,
     dispatch,
     globalSettings,

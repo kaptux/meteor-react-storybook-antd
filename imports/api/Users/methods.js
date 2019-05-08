@@ -13,4 +13,11 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
+  'users.logout': function usersUpdateUISettings() {
+    try {
+      Meteor.logout();
+    } catch (exception) {
+      handleMethodException(exception);
+    }
+  },
 });

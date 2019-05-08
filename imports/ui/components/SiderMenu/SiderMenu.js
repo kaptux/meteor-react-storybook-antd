@@ -1,7 +1,7 @@
 import React, { PureComponent, Suspense } from 'react';
-import { Layout } from 'antd';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import Layout from 'antd/lib/layout';
 import PageLoading from '../PageLoading';
 import styles from './index.less';
 import { title } from '../../../../defaultSettings';

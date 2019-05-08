@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Icon } from 'antd';
+import Icon from 'antd/lib/icon';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import RightContent from './RightContent';

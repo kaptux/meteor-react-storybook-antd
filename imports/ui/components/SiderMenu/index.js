@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer } from 'antd';
+import Drawer from 'antd/lib/drawer';
 import SiderMenu from './SiderMenu';
 
 const SiderMenuWrapper = React.memo(props => {

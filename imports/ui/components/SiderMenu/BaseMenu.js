@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
-import { Menu, Icon } from 'antd';
+import Menu from 'antd/lib/menu';
+import Icon from 'antd/lib/icon';
 
 const { SubMenu } = Menu;
 

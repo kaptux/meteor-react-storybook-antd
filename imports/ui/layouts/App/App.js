@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout } from 'antd';
 import { Switch, Route } from 'react-router-dom';
 import Media from 'react-media';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
+import Layout from 'antd/lib/layout';
 
 import SiderMenu from '../../components/SiderMenu';
 import Header from '../Header';

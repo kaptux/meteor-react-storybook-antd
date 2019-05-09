@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Card from 'antd/lib/card';
@@ -6,8 +7,9 @@ import Avatar from 'antd/lib/avatar';
 
 import { withAppContext } from '../../contexts/AppGlobalContext';
 import PageHeaderWrapper from '../../components/PageHeaderWrapper';
+import AreaChart from '../../components/Charts/Area';
 
-import styles from './Workplace.less';
+import styles from '../index.less';
 
 class Workplace extends PureComponent {
   render() {
@@ -63,7 +65,9 @@ class Workplace extends PureComponent {
               bordered={false}
               title="Success / Errors"
             >
-              <div>draw something beauty here</div>
+              <div style={{ textAlign: 'center' }}>
+                <AreaChart />
+              </div>
             </Card>
           </Col>
         </Row>

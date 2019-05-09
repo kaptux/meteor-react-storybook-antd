@@ -41,13 +41,13 @@ class Login extends React.Component {
     const { message } = this.state;
 
     return (
-      <div className="login-container">
+      <div className={styles['login-container']}>
         <div className="login-layout-lang" />
         <div className="login-layout-content">
           <div className="login-layout-top">
             <div className="login-layout-top-header">
               <a href="/">
-                <img alt="logo" className="login-layout-logo" src="logo.svg" />
+                <img alt="logo" className="login-layout-logo" src="/logo.svg" />
                 <span className="login-layout-title">Lenguage Challenge</span>
               </a>
             </div>

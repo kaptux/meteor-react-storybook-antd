@@ -10,7 +10,6 @@ import AppGlobalContext from '../../contexts/AppGlobalContext';
 import SiderMenu from '../../components/SiderMenu';
 import Header from '../Header';
 import Footer from '../../components/Footer/Footer';
-import Login from '../../pages/login';
 import Loading from '../../components/PageLoading';
 
 import SuccessPage from '../../pages/Success';
@@ -18,6 +17,7 @@ import Page1 from '../../pages/Page1';
 import Page2 from '../../pages/Page2';
 
 const ActivityPage = React.lazy(() => import('../../pages/Dashboard/Activity'));
+const LoginPage = React.lazy(() => import('../../pages/login'));
 
 import styles from './index.less';
 
@@ -139,7 +139,7 @@ class App extends React.Component {
                 <Route
                   exact
                   path="/Dashboard/Activity"
-                  component={ActivityPage}
+                  render={() => <ActivityPage />}
                 />
                 <Route exact path="/Success" component={SuccessPage} />
                 <Route exact path="/Page1" component={Page1} />
@@ -157,7 +157,9 @@ class App extends React.Component {
     const { isAuthenticated, isLoading, context } = this.props;
 
     return !isAuthenticated ? (
-      <Login />
+      <React.Suspense fallback={<Loading />}>
+        <LoginPage />
+      </React.Suspense>
     ) : isLoading ? (
       <Loading />
     ) : (

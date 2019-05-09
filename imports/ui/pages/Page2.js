@@ -1,22 +1,50 @@
-
 import React from 'react';
+import PageHeaderWrapper from '../components/PageHeaderWrapper';
+
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Card from 'antd/lib/card';
+import Avatar from 'antd/lib/avatar';
+import Tag from 'antd/lib/tag';
+import Icon from 'antd/lib/icon';
+
+import styles from './index.less';
 
 class Page2 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: '',
-    };
-  }
-  handleChange(date) {
-    message.info(`Selected Date: ${date ? date.toString() : ''}`);
-    this.setState({ date });
-  }
   render() {
-    return (
-      <div style={{ width: 400, margin: '100px auto' }}>
-        <h4>This is the Page2</h4>
+    const headerContent = (
+      <div className={styles.pageHeaderContent}>
+        <div className={styles.avatar}>
+          <Avatar size={64} icon="database" />
+        </div>
+        <div className={styles.content}>
+          <div className={styles.contentTitle}>Resources</div>
+          <div>
+            <Tag style={{ background: '#fff', borderStyle: 'dashed' }}>
+              <Icon type="plus" /> Filter
+            </Tag>
+          </div>
+        </div>
       </div>
+    );
+    const extraContent = (
+      <div className={styles.extraContent}>
+        <div className={styles.statItem}>
+          <p>Total</p>
+          <p>1432</p>
+        </div>
+      </div>
+    );
+    return (
+      <PageHeaderWrapper content={headerContent} extraContent={extraContent}>
+        <Row gutter={24}>
+          <Col xl={8} lg={24} md={24} sm={24} xs={24}>
+            <Card style={{ marginBottom: 24 }} bordered={false}>
+              Page 2 in action
+            </Card>
+          </Col>
+        </Row>
+      </PageHeaderWrapper>
     );
   }
 }

@@ -9,6 +9,16 @@ module.exports = {
   menu: {
     disableLocal: false,
   },
+  menuData: [
+    {
+      key: 'activity',
+      icon: 'thunderbolt',
+      name: 'Activity',
+      path: '/Dashboard/Activity',
+    },
+    { key: 'lists', icon: 'ordered-list', name: 'Lists', path: '/Page1' },
+    { key: 'resources', icon: 'database', name: 'Resources', path: '/Page2' },
+  ],
   title: 'Challenge',
   pwa: false,
   // Your custom iconfont Symbol script Url

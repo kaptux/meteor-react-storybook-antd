@@ -16,7 +16,7 @@ const SiderMenuWrapper = React.memo(props => {
     >
       <SiderMenu
         {...props}
-        flatMenuKeys={[]}
+        menuData={menuData}
         collapsed={isMobile ? false : collapsed}
       />
     </Drawer>

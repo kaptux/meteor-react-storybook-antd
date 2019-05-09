@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 
@@ -39,35 +40,21 @@ export default class BaseMenu extends PureComponent {
               name
             )
           }
-          key={item.path}
+          key={item.key}
         >
           {this.getNavMenuItems(item.children)}
         </SubMenu>
       );
     }
-    return <Menu.Item key={item.path}>{this.getMenuItemPath(item)}</Menu.Item>;
+    return <Menu.Item key={item.key}>{this.getMenuItemPath(item)}</Menu.Item>;
   };
 
   getMenuItemPath = item => {
-    const { name } = item;
-    const itemPath = this.conversionPath(item.path);
-    const icon = getIcon(item.icon);
-    const { target } = item;
-    // Is it a http link
-    if (/^https?:\/\//.test(itemPath)) {
-      return (
-        <a href={itemPath} target={target}>
-          {icon}
-          <span>{name}</span>
-        </a>
-      );
-    }
+    const { key, icon, name, path } = item;
     const { location, isMobile, onCollapse } = this.props;
     return (
       <Link
-        to={itemPath}
-        target={target}
-        replace={itemPath === location.pathname}
+        to={path}
         onClick={
           isMobile
             ? () => {
@@ -76,7 +63,7 @@ export default class BaseMenu extends PureComponent {
             : undefined
         }
       >
-        {icon}
+        <Icon type={icon} />
         <span>{name}</span>
       </Link>
     );
@@ -96,6 +83,18 @@ export default class BaseMenu extends PureComponent {
     return document.body;
   };
 
+  getSelectedKeys = (menuData, pathname) => {
+    const res = [];
+    if (pathname) {
+      menuData.forEach(m => {
+        if (pathname.indexOf(m.path) >= 0) {
+          res.push(m.key);
+        }
+      });
+    }
+    return res;
+  };
+
   getRef = ref => {
     this.wrap = ref;
   };
@@ -110,19 +109,19 @@ export default class BaseMenu extends PureComponent {
       collapsed,
       fixedHeader,
       layout,
+      location,
+      menuData,
     } = this.props;
+
     // if pathname can't match, use the nearest parent's key
-    let selectedKeys = [];
-    if (!selectedKeys.length && openKeys) {
-      selectedKeys = [openKeys[openKeys.length - 1]];
-    }
+    let selectedKeys = this.getSelectedKeys(menuData, location.pathname);
     let props = {};
     if (openKeys && !collapsed) {
       props = {
         openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys,
       };
     }
-    const { handleOpenChange, style, menuData } = this.props;
+    const { handleOpenChange, style } = this.props;
     const cls = classNames(className, {
       'top-nav-menu': mode === 'horizontal',
     });

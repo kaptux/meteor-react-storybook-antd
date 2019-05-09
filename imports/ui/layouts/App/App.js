@@ -6,17 +6,22 @@ import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import Layout from 'antd/lib/layout';
 
+import AppGlobalContext from '../../contexts/AppGlobalContext';
 import SiderMenu from '../../components/SiderMenu';
 import Header from '../Header';
 import Footer from '../../components/Footer/Footer';
 import Login from '../../pages/login';
 import Loading from '../../components/PageLoading';
+
+import SuccessPage from '../../pages/Success';
 import Page1 from '../../pages/Page1';
 import Page2 from '../../pages/Page2';
 
+const ActivityPage = React.lazy(() => import('../../pages/Dashboard/Activity'));
+
 import styles from './index.less';
 
-const logo = 'logo.svg';
+const logo = '/logo.svg';
 
 const { Content } = Layout;
 
@@ -104,7 +109,6 @@ class App extends React.Component {
             logo={logo}
             theme={navTheme}
             onCollapse={this.handleMenuCollapse}
-            menuData={[]}
             isMobile={isMobile}
             collapsed={collapsed}
             location={location}
@@ -129,11 +133,19 @@ class App extends React.Component {
             {...globalSettings}
           />
           <Content className={styles.content} style={contentStyle}>
-            <Switch>
-              <Route exact path="/" component={Page1} />
-              <Route exact path="/Page1" component={Page1} />
-              <Route exact path="/Page2" component={Page2} />
-            </Switch>
+            <React.Suspense fallback={<Loading />}>
+              <Switch>
+                <Route exact path="/" component={SuccessPage} />
+                <Route
+                  exact
+                  path="/Dashboard/Activity"
+                  component={ActivityPage}
+                />
+                <Route exact path="/Success" component={SuccessPage} />
+                <Route exact path="/Page1" component={Page1} />
+                <Route exact path="/Page2" component={Page2} />
+              </Switch>
+            </React.Suspense>
           </Content>
           <Footer />
         </Layout>
@@ -142,20 +154,20 @@ class App extends React.Component {
   }
 
   render() {
-    const { isAuthenticated, isLoading } = this.props;
+    const { isAuthenticated, isLoading, context } = this.props;
 
     return !isAuthenticated ? (
       <Login />
     ) : isLoading ? (
       <Loading />
     ) : (
-      <React.Fragment>
+      <AppGlobalContext.Provider value={context}>
         <ContainerQuery query={query}>
           {params => (
             <div className={classNames(params)}>{this.getLayout()}</div>
           )}
         </ContainerQuery>
-      </React.Fragment>
+      </AppGlobalContext.Provider>
     );
   }
 }

@@ -5,9 +5,8 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Card from 'antd/lib/card';
 import Avatar from 'antd/lib/avatar';
-import Tag from 'antd/lib/tag';
-import Icon from 'antd/lib/icon';
 
+import SearchTagBar from '../components/SearchTagBar/SearchTagBar';
 import styles from './index.less';
 
 class Page2 extends React.Component {
@@ -20,9 +19,7 @@ class Page2 extends React.Component {
         <div className={styles.content}>
           <div className={styles.contentTitle}>Resources</div>
           <div>
-            <Tag style={{ background: '#fff', borderStyle: 'dashed' }}>
-              <Icon type="plus" /> Filter
-            </Tag>
+            <SearchTagBar />
           </div>
         </div>
       </div>

@@ -13,9 +13,9 @@ import styles from './index.less';
 class Login extends React.Component {
   state = { message: '' };
 
-  handleSubmitResult = message => {
-    if (message) {
-      this.setState({ message });
+  handleSubmitResult = error => {
+    if (error) {
+      this.setState({ message: error.reason || error });
     }
   };
 
